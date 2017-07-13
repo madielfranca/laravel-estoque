@@ -2,19 +2,20 @@
 
 use Illuminate\Support\Facades\DB;
 use Request;
+use App\Produto;
 class ProdutoController extends Controller {
 
     public function lista(){
 
-        $produtos = DB::select('select * from produtos');
+        $produtos = Produto::all();
 
         return view('listagem')->with('produtos', $produtos);
     }
 
     public function mostra() {
     	$id = Request::route('id');
-		$produto = DB::select('select * from produtos where id = ?', [$id]);
-    	return view('detalhes')->with('p', $produto[0]);
+		  $produto = Produto::find($id);
+    	return view('detalhes')->with('p', $produto);
 
     }
 
@@ -23,15 +24,8 @@ class ProdutoController extends Controller {
     }
 
       public function adiciona(){
-      	$nome = Request::input('nome');
-      	$quantidade = Request::input('quantidade');
-      	$valor = Request::input('valor');
-      	$descricao = Request::input('descricao');
-
-      	DB::insert('insert into produtos (nome, quantidade, valor, descricao) values(?,?,?,?)', array($nome, $quantidade, $valor, $descricao));
-      	;
-
-    	return view ('adicionado')->with('nome',$nome);
+        Produto::create(Request::all());
+    	   return redirect('/produtos')->withInput();
     }
 
 }

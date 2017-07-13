@@ -1,7 +1,7 @@
 @extends('principal')
 
 @section('conteudo')
-<h1>detalhes do produtos{{$p->nome}}</h1>
+<h1>detalhes do produtos {{$p->nome}}</h1>
 <ul>
 	<li>Descrição:{{$p->descricao}}</li>
 </ul>

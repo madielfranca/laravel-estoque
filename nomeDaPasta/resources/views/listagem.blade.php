@@ -12,7 +12,15 @@
 		<td> <?= $p->quantidade ?>  </td>
 		<td>
 			<a href="\produtos\mostra\<?= $p->id ?>">
+			<a href="\produtos\mostra\<?= $p->id ?>">
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+
+			</a>
+
+		</td>
+			<td>
+			<a href="\produtos\mostra\<?= $p->id ?>">
+				<span class="glyphicon glyphicon-film" aria-hidden="true"></span>
 
 			</a>
 
@@ -20,5 +28,9 @@
 	</tr>							
 	@endforeach
 </table>
-
+@if(old('nome'))
+<div class="alert alert-success">
+Produto {{old('nome')}} adicionado com sucesso!
+</div>
+@endif
 @stop
